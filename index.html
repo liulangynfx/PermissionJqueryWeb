@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <script src="js/jquery-2.2.js"></script>
+</head>
+<body>
+<h1>welcome</h1>
+登录用户：【[[${user.username}]]】
+<a th:href="@{/logout}">注销</a>
+
+
+<h2>权限测试</h2>
+<input type="button" value="获取top任务" onclick="gettop()" />
+<textarea id="textarea1">
+    初始值
+</textarea>
+
+<br />
+
+<input type="button" value="获取单个任务" onclick="getTask()" />
+<textarea id="textarea2">
+    初始值
+</textarea>
+
+<br />
+
+<input type="button" value="更新任务" onclick="updateTask()" />
+<textarea id="textarea23">
+    初始值
+</textarea>
+
+<br />
+
+<input type="button" value="删除任务" onclick="deleteTask()" />
+<textarea id="textarea4">
+    初始值
+</textarea>
+
+<br />
+
+
+<script type="text/javascript">
+
+    function gettop() {
+        var  paramObj= {};
+        var param = JSON.stringify(paramObj);
+        $.ajax({
+            url: 'http://localhost:8080/task/getTop10Task',
+            type: 'post',
+            data:  param,
+            dataType: "json",
+            contentType: "application/json",
+            xhrFields: {
+                withCredentials: true
+            },  
+            crossDomain: true,
+            success: function (data) {
+                if (data.code == 0){
+                    alert(data.msg);
+                } else {
+                    alert(data.msg);
+                }
+            },
+            error: function (data) {
+                alert(data.msg);
+            }
+        })
+    }
+
+    function getTask() {
+        var  paramObj= {};
+        var param = JSON.stringify(paramObj);
+        $.ajax({
+            url: 'http://localhost:8080/task/getTask',
+            type: 'post',
+            data:  param,
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data) {
+                if (data.code == 0){
+                    alert(data.msg);
+                } else {
+                    alert(data.msg);
+                }
+            },
+            error: function (data) {
+                alert(data.msg);
+            }
+        })
+    }
+
+    function updateTask() {
+        var  paramObj= {};
+        var param = JSON.stringify(paramObj);
+        $.ajax({
+            url: 'http://localhost:8080/task/updateTask',
+            type: 'post',
+            data:  param,
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data) {
+                if (data.code == 0){
+                    alert(data.msg);
+                } else {
+                    alert(data.msg);
+                }
+            },
+            error: function (data) {
+                alert(data.msg);
+            }
+        })
+    }
+
+    function deleteTask() {
+        var  paramObj= {};
+        var param = JSON.stringify(paramObj);
+        $.ajax({
+            url: 'http://localhost:8080/task/deleteTask',
+            type: 'post',
+            data:  param,
+            dataType: "json",
+            contentType: "application/json",
+            success: function (data) {
+                if (data.code == 0){
+                    alert(data.msg);
+                } else {
+                    alert(data.msg);
+                }
+            },
+            error: function (data) {
+                alert(data.msg);
+            }
+        })
+    }
+
+
+</script>
+
+</body>
+</html>
